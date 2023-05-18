@@ -9,6 +9,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- js for pause other media while one plays  -->
+    <!-- link for jquery  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -35,6 +39,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ringtone.index') }}">{{ __('Ringtone') }}</a>
+                                </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
