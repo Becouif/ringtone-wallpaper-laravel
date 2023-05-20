@@ -1,9 +1,9 @@
 <?php
-
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\RingtoneController;
 use App\Http\Controllers\Backend\CategoryController;
-
+use App\Http\Controllers\Frontend\ListRingtoneController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +15,9 @@ use App\Http\Controllers\Backend\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes([
     'register'=>false
@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::group(array('namespace'=>'Backend',), function(){
+Route::group(array('prefix'=>'backend'), function(){
     Route::get('/ringtone',[RingtoneController::class, 'index'])->name('ringtone.index');
     Route::get('/ringtone/create',[RingtoneController::class, 'create'])->name('ringtone.create');
     Route::post('/ringtone/store',[RingtoneController::class, 'store'])->name('ringtone.store');
@@ -40,8 +40,13 @@ Route::group(array('namespace'=>'Backend',), function(){
     Route::get('/category/create',[CategoryController::class, 'create'])->name('category.create');
     Route::post('/category/store',[CategoryController::class, 'store'])->name('category.store');
     Route::delete('/category/{id}/remove',[CategoryController::class, 'destroy'])->name('category.destroy');
+})->middleware(Authenticate::class);
+
+Route::group(['namespace'=>'frontend'],function(){
+    Route::get('/',[ListRingtoneController::class, 'index']);
+    Route::get('/ringtones/{id}/{slug}',[ListRingtoneController::class, 'show'])->name('show.ringtone');
+    ROute::get('/category/{id}',[ListRingtoneController::class, 'category'])->name('ringtones.category');
+    Route::post('/ringtones/download/{id}',[ListRingtoneController::class, 'downloadRingtone'])->name('ringtone.download');
 });
-
-
 
 

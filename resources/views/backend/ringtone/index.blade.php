@@ -73,14 +73,6 @@
 </div>
 
 
-<script type="text/javascript">
-        function pauseOthers(element){
-            $("audio").not(element).each(function(index,audio){
-                audio.pause();
-            })
-        }
-
-    </script>
 
 
 

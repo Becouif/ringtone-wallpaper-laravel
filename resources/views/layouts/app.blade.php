@@ -13,6 +13,17 @@
     <!-- link for jquery  -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- start of js pause other media while on plays  -->
+    <script type="text/javascript">
+        function pauseOthers(element){
+            $("audio").not(element).each(function(index,audio){
+                audio.pause();
+            })
+        }
+
+    </script>
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -39,11 +50,18 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        @if (!Auth::check())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/')}}">Ringtones</a>
+                            </li>
+                        @endif
 
 
+                    @if (Auth::check())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('ringtone.index') }}">{{ __('Ringtone') }}</a>
                                 </li>
+                    @endif 
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
