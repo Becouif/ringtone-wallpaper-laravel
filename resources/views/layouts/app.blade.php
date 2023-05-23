@@ -59,7 +59,10 @@
 
                     @if (Auth::check())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('ringtone.index') }}">{{ __('Ringtone') }}</a>
+                                    <a class="nav-link" href="{{ route('ringtone.index') }}">{{ __('Manage Ringtone') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('photo.index') }}">{{ __('Manage Photo') }}</a>
                                 </li>
                     @endif 
                         <!-- Authentication Links -->

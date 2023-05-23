@@ -3,10 +3,15 @@
 @section('content')
 <div class="container">
       <div class="row justify-content-center">
+          @if (Session::has('message'))
+            <div class="alert alert-success">
+              {{ Session::get('message') }}
+            </div>
+          @endif
             <div class="card">
-                <div class="card-header">{{ __('All Ringtones') }}
+                <div class="card-header">{{ __('Images') }}
                   <span class="float-right">
-                    <a href="{{route('ringtone.create')}}"><button class="btn btn-info">List Ringtone</button></a>
+                    <a href="{{route('photo.create')}}"><button class="btn btn-info">Upload Images</button></a>
                   </span>
                 </div>
 
@@ -15,40 +20,38 @@
                   <thead>
                     <tr>
                       <th scope="col">NO</th>
-                      <th>Title</th>
-                      <th>Category</th>
-                      
                       <th>File</th>
+                      <th>Title</th>
                       <th>Description</th>
-                      <th>Download</th>
+                      <th>Format</th>
                       <th>Size</th>
-                      <th>Action</th>
+                      <th>action</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @if (count($ringtones)>0)
+                    @if (count($photos)>0)
                       
                     
-                    @foreach ($ringtones as $key=>$ringtone)
+                    @foreach ($photos as $key=>$photo)
 
                     <tr>
+                    
                       <td scope="row">{{$key+1}}</td>
-                      <td>{{$ringtone->title}}</td>
-                      <td>{{$ringtone->category->name}}</td>
-                      
                       <td>
-                        <audio controls onplay="pauseOthers(this);">
-                          <source src="/audio/{{$ringtone->file}}" type="audio/ogg">
-                          Your browser does not support this element
-                        </audio>
+                        <img src="/uploads/{{$photo->file}}" width="100" alt="">
                       </td>
-                      <td>{{$ringtone->description}}</td>
-                      <td>{{$ringtone->download}}</td>
-                      <td>{{$ringtone->size}}bytes</td>
-                      <td><a href="{{route('ringtone.edit',[$ringtone->id])}}"><button type="submit" class="btn btn-info">Edit</button></a></td>
+                      <td>{{$photo->title}}</td>
+
+                      
+                      
+                      <td>{{$photo->description}}</td>
+                      <td>{{$photo->format}}</td>
+                      <!-- convert to kb from bytes  -->
+                      <td>{{round($photo->size)*0.001,2}}kb</td>
+                      <td><a href="{{route('photo.edit',[$photo->id])}}"><button class="btn btn-info">Update</button></a></td>
                       <td>
-                        <form action="{{route('ringtone.destroy',[$ringtone->id])}}" method="post" onSubmit="return confirm('do you want to delete?')">@csrf
+                        <form action="{{route('photo.destroy',[$photo->id])}}" method="post" onSubmit="return confirm('do you want to delete?')">@csrf
                           {{ method_field('DELETE') }}
                           <button type="submit" class="btn btn-warning">Delete</button>
                         </form>
@@ -57,7 +60,7 @@
                     
                     @endforeach
                     @else
-                    <td><p>No ringtone available yet</p></td>
+                    <td><p>No photo available yet</p></td>
                     
                     @endif
                     <!-- Add more rows as needed -->
@@ -68,7 +71,7 @@
               </div>
             </div>
             <!-- for pagination  -->
-            {{ $ringtones->links() }}
+            {{ $photos->links() }}
       </div>
 </div>
 
