@@ -40,7 +40,7 @@
               </tr>
               <tr>
                 <th>Category</th>
-                <td>{{$ringtone->category->name}}</td>
+                <td>{{$ringtone->category->name ?? null}}</td>
               </tr>
               <tr>
                 <th>Downloads</th>

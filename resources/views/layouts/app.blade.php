@@ -62,6 +62,10 @@
 
                     @if (Auth::check())
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('category.create') }}">{{ __('Manage Category') }}</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('ringtone.index') }}">{{ __('Manage Ringtone') }}</a>
                                 </li>
                                 <li class="nav-item">

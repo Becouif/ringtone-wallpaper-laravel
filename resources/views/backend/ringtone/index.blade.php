@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">{{ __('All Ringtones') }}
                   <span class="float-right">
-                    <a href="{{route('ringtone.create')}}"><button class="btn btn-info">List Ringtone</button></a>
+                    <a href="{{route('ringtone.create')}}"><button class="btn btn-info">Upload Ringtone</button></a>
                   </span>
                 </div>
 
@@ -35,7 +35,7 @@
                     <tr>
                       <td scope="row">{{$key+1}}</td>
                       <td>{{$ringtone->title}}</td>
-                      <td>{{$ringtone->category->name}}</td>
+                      <td>{{$ringtone->category->name ?? null}}</td>
                       
                       <td>
                         <audio controls onplay="pauseOthers(this);">
