@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\RingtoneController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\ListRingtoneController;
 use App\Http\Controllers\Backend\PhotoController;
+use App\Http\Controllers\Frontend\PhotoController as FrontPhotoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,7 +52,16 @@ Route::group(['namespace'=>'frontend'],function(){
     Route::get('/ringtones/{id}/{slug}',[ListRingtoneController::class, 'show'])->name('show.ringtone');
     ROute::get('/category/{id}',[ListRingtoneController::class, 'category'])->name('ringtones.category');
     Route::post('/ringtones/download/{id}',[ListRingtoneController::class, 'downloadRingtone'])->name('ringtone.download');
-    Route::get('/wallpaper',);
+
+    // get wallpapers for non admin 
+    Route::get('/wallpapers',[FrontPhotoController::class, 'index']);
+
+    Route::post('download1/{id}',[FrontPhotoController::class, 'download800x600'])->name('download1');
+    Route::post('/download2/{id}',[FrontPhotoController::class, 'download1280x1024'])->name('download2');
+    Route::post('download3/{id}',[FrontPhotoController::class, 'download316x255'])->name('download3');
+    Route::post('download4/{id}',[FrontPhotoController::class,'download118x95'])->name('download4');
+
+
 });
 
 

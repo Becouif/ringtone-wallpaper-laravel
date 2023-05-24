@@ -25,7 +25,7 @@
                       <th>Description</th>
                       <th>Format</th>
                       <th>Size</th>
-                      <th>action</th>
+                      <!-- <th>action</th> -->
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -49,7 +49,7 @@
                       <td>{{$photo->format}}</td>
                       <!-- convert to kb from bytes  -->
                       <td>{{round($photo->size)*0.001,2}}kb</td>
-                      <td><a href="{{route('photo.edit',[$photo->id])}}"><button class="btn btn-info">Update</button></a></td>
+                      <!-- <td><a href="{{route('photo.edit',[$photo->id])}}"><button class="btn btn-info">Update</button></a></td> -->
                       <td>
                         <form action="{{route('photo.destroy',[$photo->id])}}" method="post" onSubmit="return confirm('do you want to delete?')">@csrf
                           {{ method_field('DELETE') }}

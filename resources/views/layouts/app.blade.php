@@ -54,6 +54,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('/')}}">Ringtones</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/wallpapers')}}">Wallpapers</a>
+                            </li>
                         @endif
 
 
